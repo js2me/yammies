@@ -94,4 +94,4 @@ export function createStorage<
   } as const;
 }
 
-export const storage = createStorage({ prefix: '@' });
+export const rootStorage = createStorage({ prefix: '@' });
