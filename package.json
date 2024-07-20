@@ -1,9 +1,23 @@
 {
   "name": "yammies",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": [
     "*"
   ],
+  "exports": {
+    "./async": "./async.js",
+    "./css": "./css.js",
+    "./device": "./device.js",
+    "./html": "./html.js",
+    "./id": "./id.js",
+    "./imports": "./imports.js",
+    "./ms": "./ms.js",
+    "./sound": "./sound.js",
+    "./storage": "./storage.js",
+    "./text": "./text.js",
+    "./type-guard": "./type-guard.js",
+    "./vibrate": "./vibrate.js"
+  },
   "scripts": {
     "prebuild": "rimraf dist & eslint . --fix",
     "build": "tsc",

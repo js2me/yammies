@@ -63,7 +63,7 @@ module.exports = {
   ],
   plugins: ['prettier', '@typescript-eslint'],
   rules: {
-    "import/no-unresolved": ["error"],
+    'import/no-unresolved': ['error'],
     'no-duplicate-imports': 'error',
     'no-trailing-spaces': 'error',
     'max-len': [
