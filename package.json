@@ -1,0 +1,45 @@
+{
+  "name": "yammies",
+  "version": "0.0.1",
+  "files": [
+    "*"
+  ],
+  "scripts": {
+    "prebuild": "rimraf dist & eslint . --fix",
+    "build": "tsc",
+    "prepub": "pnpm run build & copy package.json dist",
+    "pub": "cd dist & npm publish",
+    "postpub": "cd dist & del package.json"
+  },
+  "keywords": ["mobx"],
+  "author": "js2me",
+  "license": "MIT",
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/js2me/yammies/issues"
+  },
+  "homepage": "https://github.com/js2me/yammies",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/js2me/yammies"
+  },
+  "dependencies": {
+    "nanoid": "5.0.7"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@types/node": "20.14.5",
+    "@typescript-eslint/eslint-plugin": "7.13.1",
+    "@typescript-eslint/parser": "7.13.1",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-prettier": "5.1.3",
+    "prettier": "3.3.2",
+    "rimraf": "6.0.1",
+    "typescript": "5.4.5"
+  },
+  "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
+}
