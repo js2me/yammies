@@ -45,3 +45,15 @@ export function wrapTextToTagLink(link: string) {
   if (!/^https?:[/]{2}/.test(link)) link = `http://${link}`;
   return `<a href=${link} target="_blank">${descr}</a>`;
 }
+
+export const collectOffsetTop = (element: HTMLElement | null) => {
+  let offsetTop = 0;
+  let node = element;
+
+  while (node != null) {
+    offsetTop += node.offsetTop;
+    node = node.parentElement;
+  }
+
+  return offsetTop;
+};
