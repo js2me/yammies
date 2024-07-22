@@ -62,7 +62,13 @@ export function createStorage<
   type ConfigKeys = keyof C;
 
   return {
-    set: <V>(cfg: Omit<SetToStorageConfig<V>, ConfigKeys>) => {
+    set: <V>(
+      cfg: Omit<SetToStorageConfig<V>, ConfigKeys> &
+        Pick<
+          SetToStorageConfig<V>,
+          Extract<keyof SetToStorageConfig<V>, ConfigKeys>
+        >,
+    ) => {
       const config = cfg as SetToStorageConfig<V>;
       const storageType = (config.type ?? storageConfig.type!) as StorageType;
       const storagePrefix = (config.prefix ?? storageConfig.prefix!) as string;
@@ -74,7 +80,13 @@ export function createStorage<
         formatValueToStorage(config.value),
       );
     },
-    get: <V>(cfg: Omit<GetFromStorageConfig<V>, ConfigKeys>) => {
+    get: <V>(
+      cfg: Omit<GetFromStorageConfig<V>, ConfigKeys> &
+        Pick<
+          GetFromStorageConfig<V>,
+          Extract<keyof GetFromStorageConfig<V>, ConfigKeys>
+        >,
+    ) => {
       const config = cfg as GetFromStorageConfig<V>;
       const storageType = (config.type ?? storageConfig.type!) as StorageType;
       const storagePrefix = (config.prefix ?? storageConfig.prefix!) as string;
