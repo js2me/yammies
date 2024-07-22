@@ -56,20 +56,53 @@ export interface GetFromStorageConfig<V> {
   prefix?: string;
 }
 
-export function createStorage<
-  C extends Partial<Pick<GetFromStorageConfig<any>, 'prefix' | 'type'>>,
->(storageConfig: C) {
-  type ConfigKeys = keyof C;
+export type SetToStorageWrappedConfig<
+  V,
+  BaseConfig extends StorageConfigBase,
+> = Omit<
+  SetToStorageConfig<V>,
+  Extract<keyof SetToStorageConfig<V>, keyof BaseConfig>
+> &
+  Partial<
+    Pick<
+      SetToStorageConfig<V>,
+      Extract<keyof SetToStorageConfig<V>, keyof BaseConfig>
+    >
+  > &
+  Pick<BaseConfig, Exclude<keyof BaseConfig, keyof SetToStorageConfig<V>>>;
 
+export type GetFromStorageWrappedConfig<
+  V,
+  BaseConfig extends StorageConfigBase,
+> = Omit<
+  GetFromStorageConfig<V>,
+  Extract<keyof GetFromStorageConfig<V>, keyof BaseConfig>
+> &
+  Partial<
+    Pick<
+      GetFromStorageConfig<V>,
+      Extract<keyof GetFromStorageConfig<V>, keyof BaseConfig>
+    >
+  > &
+  Pick<BaseConfig, Exclude<keyof BaseConfig, keyof GetFromStorageConfig<V>>>;
+
+export type StorageConfigBase = Partial<
+  Pick<GetFromStorageConfig<any>, 'prefix' | 'type'>
+>;
+
+export interface StorageApi<BaseConfig extends StorageConfigBase> {
+  set<Value>(config: SetToStorageWrappedConfig<Value, BaseConfig>): void;
+  get<Value>(
+    config: GetFromStorageWrappedConfig<Value, BaseConfig>,
+  ): Value | null;
+}
+
+export function createStorage<BaseConfig extends StorageConfigBase>(
+  storageConfig: BaseConfig,
+): StorageApi<BaseConfig> {
   return {
-    set: <V>(
-      cfg: Omit<SetToStorageConfig<V>, ConfigKeys> &
-        Pick<
-          SetToStorageConfig<V>,
-          Extract<keyof SetToStorageConfig<V>, ConfigKeys>
-        >,
-    ) => {
-      const config = cfg as SetToStorageConfig<V>;
+    set: <Value>(cfg: SetToStorageWrappedConfig<Value, BaseConfig>) => {
+      const config = cfg as unknown as SetToStorageConfig<Value>;
       const storageType = (config.type ?? storageConfig.type!) as StorageType;
       const storagePrefix = (config.prefix ?? storageConfig.prefix!) as string;
 
@@ -80,21 +113,15 @@ export function createStorage<
         formatValueToStorage(config.value),
       );
     },
-    get: <V>(
-      cfg: Omit<GetFromStorageConfig<V>, ConfigKeys> &
-        Pick<
-          GetFromStorageConfig<V>,
-          Extract<keyof GetFromStorageConfig<V>, ConfigKeys>
-        >,
-    ) => {
-      const config = cfg as GetFromStorageConfig<V>;
+    get: <Value>(cfg: GetFromStorageWrappedConfig<Value, BaseConfig>) => {
+      const config = cfg as unknown as GetFromStorageConfig<Value>;
       const storageType = (config.type ?? storageConfig.type!) as StorageType;
       const storagePrefix = (config.prefix ?? storageConfig.prefix!) as string;
 
       const storage = storages[storageType];
 
       return (
-        parseStorageValue<V>(
+        parseStorageValue<Value>(
           storage.getItem(
             createStorageKey(storagePrefix, config.key, config.namespace),
           ),
@@ -105,5 +132,3 @@ export function createStorage<
     },
   } as const;
 }
-
-export const rootStorage = createStorage({ prefix: '@' });
