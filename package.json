@@ -1,6 +1,6 @@
 {
   "name": "yammies",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "files": [
     "*"
   ],
@@ -27,7 +27,7 @@
     "pub": "cd dist & npm publish",
     "postpub": "cd dist & del package.json"
   },
-  "keywords": ["mobx"],
+  "keywords": [],
   "author": "js2me",
   "license": "MIT",
   "description": "",
