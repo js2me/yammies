@@ -11,6 +11,34 @@ export const fileToBlob = (file: File) => {
   return new Blob([file], { type: file.type });
 };
 
+export const imageToBlob = (
+  imageElement: HTMLImageElement,
+  mimeType: string = 'image/png',
+) => {
+  const canvas = document.createElement('canvas');
+
+  canvas.width = imageElement.naturalWidth || 300;
+  canvas.height = imageElement.naturalHeight || 300;
+
+  canvas.getContext('2d')!.drawImage(imageElement, 0, 0);
+
+  const dataUri = canvas.toDataURL(mimeType, 1);
+  const base64data = dataUri.split(',')[1];
+  const base64MimeType = dataUri.split(';')[0].slice(5);
+
+  const bytes = window.atob(base64data);
+  const buf = new ArrayBuffer(bytes.length);
+  const arr = new Uint8Array(buf);
+
+  for (let i = 0; i < bytes.length; i++) {
+    arr[i] = bytes.charCodeAt(i);
+  }
+
+  const blob = new Blob([arr], { type: base64MimeType });
+
+  return blob;
+};
+
 export const renderImage = (blobOrUrl: Blob | string) =>
   new Promise<HTMLImageElement>((resolve, reject) => {
     const image = new Image();
