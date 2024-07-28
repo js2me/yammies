@@ -49,7 +49,7 @@ Yammies - это набор разнообразных утилит для JavaS
 ## [text](src/text.ts)  
 Утилиты по работы с текстом  
 
-## [type](src/type-guard.ts)  
+## [type-guard](src/type-guard.ts)  
 Утилита для проверок на типы  
 
 ## [vibrate](src/vibrate.ts)  
