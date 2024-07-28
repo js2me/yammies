@@ -7,6 +7,9 @@ export function blobToBase64(blob: Blob): Promise<string> {
   });
 }
 
+export const blobToUrl = (urlOrBlob: string | Blob) =>
+  urlOrBlob instanceof Blob ? URL.createObjectURL(urlOrBlob) : urlOrBlob;
+
 export const fileToBlob = (file: File) => {
   return new Blob([file], { type: file.type });
 };
@@ -39,11 +42,15 @@ export const imageToBlob = (
   return blob;
 };
 
-export const renderImage = (blobOrUrl: Blob | string) =>
+/**
+ * Загружает и отрисовывает изображение с использованием Image
+ *
+ * @returns {Promise<HTMLImageElement>}
+ */
+export const renderImage = (urlOrBlob: Blob | string) =>
   new Promise<HTMLImageElement>((resolve, reject) => {
     const image = new Image();
-    image.src =
-      blobOrUrl instanceof Blob ? URL.createObjectURL(blobOrUrl) : blobOrUrl;
+    image.src = blobToUrl(urlOrBlob);
     image.onload = () => resolve(image);
     image.onerror = () => reject();
   });

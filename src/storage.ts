@@ -97,6 +97,9 @@ export interface StorageApi<BaseConfig extends StorageConfigBase> {
   ): Value | null;
 }
 
+/**
+ * Создает интерфейс для работы с хранилищем (localStorage, sessionStorage)
+ */
 export function createStorage<BaseConfig extends StorageConfigBase>(
   storageConfig: BaseConfig,
 ): StorageApi<BaseConfig> {

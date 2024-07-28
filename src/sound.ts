@@ -1,3 +1,6 @@
+/**
+ * Воспроизводит звук из файла
+ */
 export const playSound = async (
   file: string,
   { volume = 1 }: { volume?: number } = {},

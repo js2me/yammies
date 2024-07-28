@@ -1,5 +1,7 @@
+import { blobToUrl } from './media';
+
 /**
- * Вытаскивает rgb из цвета
+ * Вытаскивает RGB из любого цвета
  */
 export const getComputedColor = (color?: string): string | null => {
   if (!color) return null;
@@ -20,14 +22,13 @@ export const downloadUsingAnchor = (
   urlOrBlob: string | Blob,
   fileName?: string,
 ) => {
-  const url =
-    typeof urlOrBlob === 'string' ? urlOrBlob : URL.createObjectURL(urlOrBlob);
+  const url = blobToUrl(urlOrBlob);
 
   const a = document.createElement('a');
   a.href = url;
-  if (fileName) {
-    a.download = fileName;
-  }
+
+  a.download = fileName || 'file';
+
   a.target = '_blank';
 
   document.body.appendChild(a);
