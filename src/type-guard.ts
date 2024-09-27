@@ -1,3 +1,5 @@
+import { AnyFunction, AnyObject } from './utils/types';
+
 // Based on https://gist.github.com/jonbretman/7259628
 function getType(o: unknown) {
   // handle corner cases for old IE and PhantomJS
