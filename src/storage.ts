@@ -19,7 +19,7 @@ const parseStorageValue = <V>(value: unknown): V | null => {
   try {
     const parsed = JSON.parse(value);
     return parsed;
-  } catch (e) {
+  } catch {
     return null;
   }
 };

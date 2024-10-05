@@ -1,10 +1,10 @@
 import { Maybe } from './utils/types';
 
 export function degToRad(deg: number) {
-  return deg * (Math.PI / 180.0);
+  return deg * (Math.PI / 180);
 }
 export function radToDeg(rad: number) {
-  return rad * (180.0 / Math.PI);
+  return rad * (180 / Math.PI);
 }
 
 /**
@@ -15,6 +15,6 @@ export function radToDeg(rad: number) {
  * percentFrom(1000, 2000) // 50
  * ```
  */
-export const percentFrom = (num: Maybe<number>, from: Maybe<number>) => {
-  return ((num || 0) / (from || 0)) * 100 || 0;
+export const percentFrom = (value: Maybe<number>, from: Maybe<number>) => {
+  return ((value ?? 0) / (from ?? 0)) * 100 || 0;
 };

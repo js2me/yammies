@@ -1,32 +1,33 @@
 import { AnyFunction, AnyObject } from './utils/types';
 
 // Based on https://gist.github.com/jonbretman/7259628
-function getType(o: unknown) {
+function getType(value: unknown) {
   // handle corner cases for old IE and PhantomJS
-  if (o === undefined) {
+  if (value === undefined) {
     return 'undefined';
   }
 
-  if (o === null) {
+  if (value === null) {
     return 'null';
   }
 
   // handle DOM elements
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  if (o && (o.nodeType === 1 || o.nodeType === 9)) {
+  if (value && (value.nodeType === 1 || value.nodeType === 9)) {
     return 'element';
   }
 
-  const s = Object.prototype.toString.call(o);
-  const type = s.substring('[object '.length, s.length - 1).toLowerCase();
+  const toStringResult = Object.prototype.toString.call(value);
+
+  const type = toStringResult.slice('[object '.length, -1).toLowerCase();
 
   // handle NaN and Infinity
   if (type === 'number') {
-    if (isNaN(o as number)) {
+    if (Number.isNaN(value as number)) {
       return 'nan';
     }
-    if (!isFinite(o as number)) {
+    if (!Number.isFinite(value as number)) {
       return 'infinity';
     }
   }

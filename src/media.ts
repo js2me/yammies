@@ -29,15 +29,16 @@ export const imageToBlob = (
   const base64data = dataUri.split(',')[1];
   const base64MimeType = dataUri.split(';')[0].slice(5);
 
-  const bytes = window.atob(base64data);
+  const bytes = globalThis.atob(base64data);
   const buf = new ArrayBuffer(bytes.length);
-  const arr = new Uint8Array(buf);
+  const array = new Uint8Array(buf);
 
-  for (let i = 0; i < bytes.length; i++) {
-    arr[i] = bytes.charCodeAt(i);
+  for (let index = 0; index < bytes.length; index++) {
+    // eslint-disable-next-line unicorn/prefer-code-point
+    array[index] = bytes.charCodeAt(index);
   }
 
-  const blob = new Blob([arr], { type: base64MimeType });
+  const blob = new Blob([array], { type: base64MimeType });
 
   return blob;
 };

@@ -19,13 +19,13 @@ export const waitAsync = (ms = 1000) =>
  * @returns void
  */
 export const endlessRAF = (
-  quitFn: () => boolean | void,
+  quitFunction: () => boolean | void,
   asMicrotask?: boolean,
 ) => {
-  if (quitFn()) return;
+  if (quitFunction()) return;
 
   const raf = () =>
-    requestAnimationFrame(() => endlessRAF(quitFn, asMicrotask));
+    requestAnimationFrame(() => endlessRAF(quitFunction, asMicrotask));
 
   if (asMicrotask) {
     queueMicrotask(raf);
