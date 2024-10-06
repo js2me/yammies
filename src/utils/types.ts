@@ -27,9 +27,18 @@ export type MaybeFalsy<T> = Maybe<T> | '' | false | 0;
 
 export type Class<T, Args extends any[] = any[]> = new (...args: Args) => T;
 
+/**
+ * Все свойства будут опциональны, в любую глубину
+ */
 export type DeepPartial<T> = {
   [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
 };
+
+export type PartialKeys<T, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>>;
+
+export type RequiredKeys<T, K extends keyof T> = Omit<T, K> &
+  Required<Pick<T, K>>;
 
 export type AllPropertiesOptional<T> = keyof T extends never
   ? true

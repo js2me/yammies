@@ -1,6 +1,6 @@
 {
   "name": "yammies",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "scripts": {
     "clean": "rimraf dist",
     "check": "eslint . --fix",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/node": "20.14.5",
     "eslint": "8.57.0",
-    "js2me-exports-post-build-script": "1.0.0",
+    "js2me-exports-post-build-script": "1.0.1",
     "js2me-eslint-config": "1.0.4",
     "rimraf": "6.0.1",
     "typescript": "5.4.5"
