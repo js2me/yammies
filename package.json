@@ -1,6 +1,6 @@
 {
   "name": "yammies",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "scripts": {
     "clean": "rimraf dist",
     "check": "eslint . --fix",
@@ -16,6 +16,7 @@
   "author": "js2me",
   "license": "MIT",
   "description": "",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/js2me/yammies/issues"
   },
