@@ -29,7 +29,7 @@ const toLibFormat = function (
   }
 };
 
-export const dateTime = function (
+export const formatDate = function (
   value: Maybe<string | number | Dayjs>,
   settings?: Maybe<{
     format?:
