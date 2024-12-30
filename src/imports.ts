@@ -12,6 +12,7 @@ import { waitAsync } from './async';
 export const fetchLazyModule = async <T>(
   fetchModule: () => Promise<T>,
   attempts = 3,
+  delay = 1000,
 ): Promise<T> => {
   const attemptsArray = Array.from<typeof fetchModule>({
     length: attempts,
@@ -22,7 +23,7 @@ export const fetchLazyModule = async <T>(
   for await (const attempt of attemptsArray) {
     try {
       if (lastError !== null) {
-        await waitAsync(1000);
+        await waitAsync(delay);
       }
       return await attempt();
     } catch (error) {
