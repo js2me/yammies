@@ -91,3 +91,13 @@ export const formatDate = function (
     }
   }
 };
+
+export const timeDuration = (timeInMs: number) => {
+  const duration = dayjs.duration(timeInMs);
+
+  return {
+    hours: duration.hours(),
+    minutes: duration.minutes(),
+    seconds: duration.seconds(),
+  };
+};
