@@ -27,6 +27,7 @@
     "@types/insane": "^1.0.0",
     "@types/lodash-es": "^4.17.12",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "insane": "^2.6.2",
     "lodash-es": "^4.17.21",
     "nanoid": "^5.0.9",
