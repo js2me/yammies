@@ -1,28 +1,23 @@
 import { postBuildScript, publishScript } from 'js2me-exports-post-build-script';
-import { $ } from "js2me-exports-post-build-script/utils";
 
 postBuildScript({
   buildDir: 'dist',
   rootDir: '.',
   srcDirName: 'src',
-  filesToCopy: ['LICENSE', 'README.md'],
-  patchPackageJson: (packageJson) => {
-    $(`cp src/utils/types.ts dist/util-types.d.ts`);
-    $(`sed -i 's/^export type/type/' dist/util-types.d.ts`);
-
-    packageJson.exports['./util-types'] = './util-types.d.ts';
-  },
+  filesToCopy: ['LICENSE', 'README.md', 'assets'],
   updateVersion: process.env.PUBLISH_VERSION,
-  onPackageVersionChanged: (nextVersion, currVersion) => {
+  onDone: (versionsDiff, _, packageJson, { targetPackageJson}) => {
     if (process.env.PUBLISH) {
       publishScript({
-        nextVersion,
-        currVersion,
+        nextVersion: versionsDiff?.next ?? packageJson.version,
+        currVersion: versionsDiff?.current,
         publishCommand: 'pnpm publish',
         commitAllCurrentChanges: true,
         createTag: true,
-        githubRepoLink: 'https://github.com/js2me/mobx-react-hook-form',
+        githubRepoLink: 'https://github.com/js2me/yummies',
         cleanupCommand: 'pnpm clean', 
+        targetPackageJson,
+        otherNames: ['yummies']
       })
     }
   }

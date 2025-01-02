@@ -16,12 +16,12 @@
   "description": "",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/js2me/yammies/issues"
+    "url": "https://github.com/js2me/yummies/issues"
   },
-  "homepage": "https://github.com/js2me/yammies",
+  "homepage": "https://github.com/js2me/yummies",
   "repository": {
     "type": "git",
-    "url": "git://github.com/js2me/yammies"
+    "url": "git://github.com/js2me/yummies"
   },
   "dependencies": {
     "@types/insane": "^1.0.0",
@@ -34,7 +34,7 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/node": "^20.17.10",
+    "@types/node": "^20.17.11",
     "eslint": "^8.57.1",
     "js2me-eslint-config": "^1.0.7",
     "js2me-exports-post-build-script": "^2.0.17",
