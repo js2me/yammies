@@ -23,7 +23,9 @@ export type UnionToIntersection<U> = (
   ? I
   : never;
 
-export type MaybeFalsy<T> = Maybe<T> | '' | false | 0;
+type FalsyValues = undefined | null | '' | false | 0;
+
+export type MaybeFalsy<T> = Maybe<T> | FalsyValues;
 
 export type Class<T, Args extends any[] = any[]> = new (...args: Args) => T;
 
@@ -47,3 +49,6 @@ export type AllPropertiesOptional<T> = keyof T extends never
       } extends { [K in keyof T]: never }
     ? true
     : false;
+
+export type RecordEntries<T extends AnyObject> =
+  T extends Record<infer Keys, infer Values> ? [Keys, Values][] : never;
