@@ -1,6 +1,6 @@
 {
   "name": "yammies",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "scripts": {
     "clean": "rimraf dist",
     "check": "eslint . --fix",
