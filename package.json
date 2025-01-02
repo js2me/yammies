@@ -1,5 +1,5 @@
 {
-  "name": "yammies",
+  "name": "yummies",
   "version": "3.0.0",
   "scripts": {
     "clean": "rimraf dist",

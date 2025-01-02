@@ -16,8 +16,7 @@ postBuildScript({
         createTag: true,
         githubRepoLink: 'https://github.com/js2me/yummies',
         cleanupCommand: 'pnpm clean', 
-        targetPackageJson,
-        otherNames: ['yummies']
+        targetPackageJson
       })
     }
   }
