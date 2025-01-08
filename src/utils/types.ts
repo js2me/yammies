@@ -23,7 +23,7 @@ export type UnionToIntersection<U> = (
   ? I
   : never;
 
-type FalsyValues = undefined | null | '' | false | 0;
+export type FalsyValues = undefined | null | '' | false | 0;
 
 export type MaybeFalsy<T> = Maybe<T> | FalsyValues;
 
