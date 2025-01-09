@@ -62,7 +62,11 @@ export type AllPropertiesOptional<T> = keyof T extends never
     : false;
 
 export type RecordEntries<T extends AnyObject> =
-  T extends Record<infer Keys, infer Values> ? [Keys, Values][] : never;
+  T extends Record<infer Keys, infer Values>
+    ? [Keys, Values][]
+    : T extends Partial<Record<infer Keys, infer Values>>
+      ? [Keys, Values][]
+      : never;
 
 export type RenameKey<
   TObject,
