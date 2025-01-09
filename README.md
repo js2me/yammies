@@ -70,10 +70,23 @@ Yummies - это набор разнообразных утилит для JavaS
 
 ## [yummies/utility-types](src/utils/types.ts)  
 TypeScript типы-утилиты, которые упрощают написание TypeScript кода.  
-Импортируют глобально, встраиваясь в окружающую среду   
+Импортируются глобально, используя `d.ts` файл, встраиваясь в окружающую среду   
 ```ts
 import 'yummies/utility-types';
 ```  
+Или указываются в `tsconfig.json` в поле `"types"`    
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "yummies/utility-types"
+    ],
+    "target": "...blabla",
+    ...
+  }
+  ...
+}
+```
 Также можно использовать альтернативный "библиотечный" подход, когда нам нужны экспортируемые типы.  
 Для этого можно использовать импорт `yummies/utils/types`   
 
