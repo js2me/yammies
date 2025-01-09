@@ -64,10 +64,11 @@ export type AllPropertiesOptional<T> = keyof T extends never
 export type RecordEntries<T extends AnyObject> =
   T extends Record<infer Keys, infer Values> ? [Keys, Values][] : never;
 
-export type RenameKey<T, K extends keyof T, N extends string> = Pick<
-  T,
-  Exclude<keyof T, K>
-> &
-  ValueOf<{
-    [P in N]: Pick<T, K>;
-  }>;
+export type RenameKey<
+  TObject,
+  TOldKey extends keyof TObject,
+  TNewKey extends string,
+> = Omit<TObject, TOldKey> &
+  AllPropertiesOptional<Pick<TObject, TOldKey>> extends true
+  ? { [K in TNewKey]?: TObject[TOldKey] }
+  : { [K in TNewKey]: TObject[TOldKey] };
