@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+/**
+ * Extract all values from object or array
+ */
 export type ValueOf<T> = T[keyof T];
 
+/** Converts enum keys to union */
 export type ExtractEnumKeys<T> = ValueOf<{
   [key in keyof T]: key extends string ? key : never;
 }>;
@@ -9,8 +14,14 @@ export type Maybe<T> = Nullable<T> | undefined;
 
 export type Nullable<T> = T | null;
 
+/**
+ * Any object with any values
+ */
 export type AnyObject = Record<string, any>;
 
+/**
+ * Empty object without properties
+ */
 export type EmptyObject = Record<string, never>;
 
 export type AnyPrimitive = string | number | boolean | null | undefined;

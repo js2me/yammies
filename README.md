@@ -67,3 +67,16 @@ Yummies - это набор разнообразных утилит для JavaS
 
 ## [yummies/vibrate](src/vibrate.ts)  
 Утилиты по работе с vibrate api  
+
+## [yummies/utility-types](src/utils/types.ts)  
+TypeScript типы-утилиты, которые упрощают написание TypeScript кода.  
+Импортируют глобально, встраиваясь в окружающую среду   
+```ts
+import 'yummies/utility-types';
+```  
+Также можно использовать альтернативный "библиотечный" подход, когда нам нужны экспортируемые типы.  
+Для этого можно использовать импорт `yummies/utils/types`   
+
+```ts
+import { AnyObject } from 'yummies/utils/types';
+```
