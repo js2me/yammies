@@ -93,3 +93,8 @@ import 'yummies/utility-types';
 ```ts
 import { AnyObject } from 'yummies/utils/types';
 ```
+
+
+## [yummies/complex](src/complex/index.ts)  
+
+Дополнительный набор комплексных утилит  

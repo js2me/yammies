@@ -76,3 +76,9 @@ export type RenameKey<
   AllPropertiesOptional<Pick<TObject, TOldKey>> extends true
   ? { [K in TNewKey]?: TObject[TOldKey] }
   : { [K in TNewKey]: TObject[TOldKey] };
+
+export type IsObjectEmpty<T extends AnyObject> = T extends EmptyObject
+  ? true
+  : keyof T extends never
+    ? true
+    : never;
