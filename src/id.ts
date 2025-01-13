@@ -71,3 +71,7 @@ export const createLinearNumericIdGenerator = (size: number = 9) => {
  *
  */
 export const generateLinearNumericId = createLinearNumericIdGenerator();
+
+export const generateStackBasedId = () =>
+  // eslint-disable-next-line unicorn/error-message
+  new Error().stack!.split('\n').slice(1, 4).join('');
