@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/todo-tag */
-import { degToRad } from './math';
+import { degToRad } from './math.js';
 
 export function blobToBase64(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {

@@ -1,8 +1,8 @@
 import insane, { SanitizeOptions } from 'insane';
 import { clamp } from 'lodash-es';
 
-import { blobToUrl } from './media';
-import { Maybe } from './utils/types';
+import { blobToUrl } from './media.js';
+import { Maybe } from './utils/types.js';
 
 /**
  * Вытаскивает RGB из любого цвета

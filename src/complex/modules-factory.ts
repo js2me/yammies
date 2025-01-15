@@ -3,7 +3,7 @@ import {
   AnyObject,
   Class,
   EmptyObject,
-} from '../utils/types';
+} from '../utils/types.js';
 
 type ModuleLoaderConfig<TPredefinedDeps extends AnyObject = EmptyObject> = {
   factory<TInstance, TDeps extends TPredefinedDeps>(

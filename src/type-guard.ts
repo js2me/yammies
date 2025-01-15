@@ -1,4 +1,4 @@
-import { AnyFunction, AnyObject } from './utils/types';
+import { AnyFunction, AnyObject } from './utils/types.js';
 
 // Based on https://gist.github.com/jonbretman/7259628
 function getType(value: unknown) {

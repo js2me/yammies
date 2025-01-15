@@ -1,4 +1,4 @@
-import { waitAsync } from './async';
+import { waitAsync } from './async.js';
 
 /**
  * Функция ленивой загрузки модуля, с возможностью вызова доп. попыток

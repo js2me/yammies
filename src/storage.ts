@@ -47,7 +47,7 @@ export interface GetFromStorageConfig<V> {
    */
   fallback?: V;
   /**
-   * Доп. делитель в ключе
+   * Доп. делитель в ключ/utils/types'е
    */
   namespace?: string;
   /**

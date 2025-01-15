@@ -2,8 +2,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { typeGuard } from './type-guard';
-import { Maybe } from './utils/types';
+import { typeGuard } from './type-guard.js';
+import { Maybe } from './utils/types.js';
 
 import 'dayjs/locale/ru';
 

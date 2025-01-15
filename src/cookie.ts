@@ -1,4 +1,4 @@
-import { AnyObject } from './utils/types';
+import { AnyObject } from './utils/types.js';
 
 export const parseCookie = (cookiesString = document.cookie) => {
   return cookiesString

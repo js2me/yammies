@@ -15,66 +15,66 @@
 [bundlephobia-image]: https://badgen.net/bundlephobia/minzip/yummies
 
 
-Yummies - это набор разнообразных утилит для JavaScript-проектов с открытым исходным кодом, предназначенный для упрощения выполнения общих задач и повышения производительности. Этот проект предоставляет разработчикам мощные и простые в использовании функции, которые легко интегрировать в любой JavaScript-код.  
+Yummies - a set of various utilities for JavaScript projects with open source code, designed to simplify the execution of common tasks and increase performance. This project provides developers with powerful and easy-to-use functions that can be easily integrated into any JavaScript code.
 
 ## [yummies/async](src/async.ts)  
-Утилиты по работе с асинхронным кодом  
+Utilities for working with asynchronous code  
 
 ## [yummies/cookie](src/cookie.ts)  
-Утилиты по работе с куками  
+Utilities for working with cookies  
 
 ## [yummies/css](src/css.ts)  
-Утилиты по работе с CSS  
+Utilities for working with CSS  
 
 ## [yummies/date-time](src/date-time.ts)  
-Утилиты по работе с датой и временем (основаны на dayjs)   
+Utilities for working with dates and times (based on dayjs)  
 
 ## [yummies/device](src/device.ts)  
-Утилиты по работе с устройствами  
+Utilities for working with devices  
 
 ## [yummies/html](src/html.ts)  
-Утилиты по работе с HTML  
+Utilities for working with HTML  
 
 ## [yummies/id](src/id.ts)  
-Утилиты по работе с идентификаторами  
+Utilities for working with identifiers  
 
 ## [yummies/imports](src/imports.ts)  
-Утилиты по работе с импортом модулей  
+Utilities for working with module imports  
 
 ## [yummies/math](src/math.ts)  
-Утилиты по работе с устройствами  
+Utilities for working with devices  
 
 ## [yummies/media](src/media.ts)  
-Утилиты по работе с медиа (изображением, канвасом и блобом)  
+Utilities for working with media (image, canvas and blob)  
 
 ## [yummies/ms](src/ms.ts)  
-Утилиты по работе с миллисекундами  
+Utilities for working with milliseconds  
 
 ## [yummies/price](src/price.ts)  
-Утилиты по работе с денежными значениями (форматирование)  
+Utilities for working with monetary values (formatting)  
 
 ## [yummies/sound](src/sound.ts)  
-Утилиты по работе со звуком  
+Utilities for working with sound  
 
 ## [yummies/storage](src/storage.ts)  
-Утилиты по работе с хранилищем (localStorage, sessionStorage)  
+Utilities for working with storage (localStorage, sessionStorage)  
 
 ## [yummies/text](src/text.ts)  
-Утилиты по работе с текстом  
+Utilities for working with text  
 
 ## [yummies/type-guard](src/type-guard.ts)  
-Утилита для проверок на типы  
+Utility for type checks  
 
 ## [yummies/vibrate](src/vibrate.ts)  
-Утилиты по работе с vibrate api  
+Utilities for working with vibrate api  
 
 ## [yummies/utility-types](src/utils/types.ts)  
-TypeScript типы-утилиты, которые упрощают написание TypeScript кода.  
-Импортируются глобально, используя `d.ts` файл, встраиваясь в окружающую среду   
+TypeScript utility types that simplify writing TypeScript code.  
+They can be imported globally using the `d.ts` file, embedding it in the environment  
 ```ts
 import 'yummies/utility-types';
 ```  
-Или указываются в `tsconfig.json` в поле `"types"`    
+Or specified in `tsconfig.json` in the `"types"` field    
 ```json
 {
   "compilerOptions": {
@@ -87,8 +87,8 @@ import 'yummies/utility-types';
   ...
 }
 ```
-Также можно использовать альтернативный "библиотечный" подход, когда нам нужны экспортируемые типы.  
-Для этого можно использовать импорт `yummies/utils/types`   
+Alternatively, you can use the "library" approach, where you need exported types.  
+For this, you can use the `yummies/utils/types` import.
 
 ```ts
 import { AnyObject } from 'yummies/utils/types';
@@ -97,4 +97,4 @@ import { AnyObject } from 'yummies/utils/types';
 
 ## [yummies/complex](src/complex/index.ts)  
 
-Дополнительный набор комплексных утилит  
+Additional set of complex utilities  

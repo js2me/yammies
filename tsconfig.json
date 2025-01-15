@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": [],
-    "target": "ES2018",
+    "target": "ESNext",
     "outDir": "dist",
     "declaration": true,
     "declarationMap": true,
@@ -9,7 +9,7 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
