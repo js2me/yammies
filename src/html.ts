@@ -183,8 +183,11 @@ export const checkElementHasParent = (
  *
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition | MDN: Document.startViewTransition}
  */
-export const startViewTransitionSafety = (fn: VoidFunction) => {
-  if (document.startViewTransition) {
+export const startViewTransitionSafety = (
+  fn: VoidFunction,
+  params?: { disabled?: boolean },
+) => {
+  if (document.startViewTransition && !params?.disabled) {
     return document.startViewTransition(fn);
   }
   fn();
