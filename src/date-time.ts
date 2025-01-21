@@ -92,6 +92,28 @@ export const formatDate = function (
   }
 };
 
+export const getDatesDuration = (dateA: Date, dateB: Date) => {
+  const startedDate = dayjs(dateA);
+  const endedDate = dayjs(dateB);
+
+  const diff = endedDate.diff(startedDate, 'ms');
+  const duration = dayjs.duration(diff);
+
+  if (duration.asSeconds() < 1) {
+    return duration.format('SSS[ мс]');
+  } else if (duration.asMinutes() < 1) {
+    return duration.format('s[ сек]');
+  } else if (duration.asHours() < 1) {
+    return duration.format('m[ мин] s[ сек]');
+  } else if (duration.asDays() < 1) {
+    return duration.format('h[ ч] m[ мин] s[ сек]');
+  } else if (duration.asMonths() < 1) {
+    return duration.format('D[ д] H[ ч] m[ мин] s[ сек]');
+  } else {
+    return duration.format('M[ мес] D[ д] H[ ч] m[ мин] s[ сек]');
+  }
+};
+
 export const timeDuration = (timeInMs: number) => {
   const duration = dayjs.duration(timeInMs);
 
