@@ -6,8 +6,23 @@
  * @param ms значение в миллисекундах
  * @returns Promise
  */
-export const waitAsync = (ms = 1000) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+export const sleep = (time: number = 0) => {
+  const promise = Promise.resolve();
+
+  setTimeout(() => {
+    promise.then();
+  }, time);
+
+  return promise;
+};
+
+/**
+ * Создает промис, который будет ждать указанное количество ms, чтобы выполниться
+ *
+ * @param ms значение в миллисекундах
+ * @returns Promise
+ */
+export const waitAsync = (ms = 1000) => sleep(ms);
 
 /**
  * Создает вызов requestAnimationFrame, посылая туда фукнцию {quitFn}, если она возвращает true,
