@@ -82,3 +82,7 @@ export type IsObjectEmpty<T extends AnyObject> = T extends EmptyObject
   : keyof T extends never
     ? true
     : never;
+
+export type IsEmptyArray<T extends readonly any[]> = T extends []
+  ? true
+  : false;
