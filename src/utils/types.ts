@@ -38,6 +38,10 @@ export type FalsyValues = undefined | null | '' | false | 0;
 
 export type MaybeFalsy<T> = Maybe<T> | FalsyValues;
 
+export type MaybeFn<T, TArgs extends any[] = any[]> =
+  | T
+  | ((...args: TArgs) => T);
+
 export type Class<T, Args extends any[] = any[]> = new (...args: Args) => T;
 
 /**
