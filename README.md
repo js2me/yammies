@@ -20,6 +20,9 @@ Yummies - a set of various utilities for JavaScript projects with open source co
 ## [yummies/async](src/async.ts)  
 Utilities for working with asynchronous code  
 
+## [yummies/common](src/common.ts)  
+All other utilities without groupping  
+
 ## [yummies/cookie](src/cookie.ts)  
 Utilities for working with cookies  
 
