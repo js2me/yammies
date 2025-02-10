@@ -1,7 +1,9 @@
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { Dayjs, ManipulateType } from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+import { unitsToMs } from './ms.js';
+import { declension } from './text.js';
 import { typeGuard } from './type-guard.js';
 import { Maybe } from './utils/types.js';
 
@@ -92,34 +94,130 @@ export const formatDate = function (
   }
 };
 
-export const getDatesDuration = (dateA: Date, dateB: Date) => {
+export const dayTimeDuration = (timeInMs: number) => {
+  let left = timeInMs;
+
+  const days = Math.floor(left / unitsToMs.day);
+  left = left % unitsToMs.day;
+
+  const hours = Math.floor(left / unitsToMs.hour);
+  left = left % unitsToMs.hour;
+
+  const minutes = Math.floor(left / unitsToMs.min);
+  left = left % unitsToMs.min;
+
+  const seconds = Math.floor(left / unitsToMs.sec);
+  left = left % unitsToMs.sec;
+
+  const milliseconds = Math.floor(left);
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds,
+    milliseconds,
+  };
+};
+
+type DateChangeParam = [amount: number, unit?: Maybe<ManipulateType>];
+
+export const changeDate = (
+  date: Maybe<Date | number | string>,
+  ...args: [
+    ...DateChangeParam,
+    ...Partial<DateChangeParam>,
+    ...Partial<DateChangeParam>,
+    ...Partial<DateChangeParam>,
+    ...Partial<DateChangeParam>,
+    ...Partial<DateChangeParam>,
+  ]
+) => {
+  let wrappedDate = dayjs(date);
+
+  for (let i = 0; i < args.length; i += 2) {
+    const amount = args[i] as DateChangeParam[0];
+    const unit = args[i + 1] as DateChangeParam[1];
+    if (unit != null) {
+      wrappedDate = wrappedDate.add(amount, unit);
+    }
+  }
+
+  return wrappedDate.toDate();
+};
+
+export const timeDuration = (timeInMs: number) => {
+  const { days, hours, milliseconds, minutes, seconds } =
+    dayTimeDuration(timeInMs);
+
+  return {
+    hours: hours + unitsToMs.day * days,
+    milliseconds,
+    minutes,
+    seconds,
+  };
+};
+
+const durationFormatLabels = {
+  days: { compact: 'д', full: ['день', 'дня', 'дней'] },
+  hours: { compact: 'ч', full: ['час', 'часа', 'часов'] },
+  minutes: { compact: 'мин', full: ['минута', 'минуты', 'минут'] },
+  seconds: { compact: 'сек', full: ['секунда', 'секунды', 'секунд'] },
+} as const;
+
+export const getDatesFormatDuration = (
+  dateA: Date,
+  dateB: Date,
+  compact?: boolean,
+) => {
   const startedDate = dayjs(dateA);
   const endedDate = dayjs(dateB);
 
   const diff = endedDate.diff(startedDate, 'ms');
-  const duration = dayjs.duration(diff);
 
-  if (duration.asSeconds() < 1) {
-    return duration.format('SSS[ мс]');
-  } else if (duration.asMinutes() < 1) {
-    return duration.format('s[ сек]');
-  } else if (duration.asHours() < 1) {
-    return duration.format('m[ мин] s[ сек]');
-  } else if (duration.asDays() < 1) {
-    return duration.format('h[ ч] m[ мин] s[ сек]');
-  } else if (duration.asMonths() < 1) {
-    return duration.format('D[ д] H[ ч] m[ мин] s[ сек]');
-  } else {
-    return duration.format('M[ мес] D[ д] H[ ч] m[ мин] s[ сек]');
+  const { days, hours, minutes, seconds } = dayTimeDuration(diff);
+
+  const formattedParts: string[] = [];
+
+  if (days) {
+    if (compact) {
+      formattedParts.push(`${days} ${durationFormatLabels.days.compact}`);
+    } else {
+      formattedParts.push(
+        `${days} ${declension(days, durationFormatLabels.days.full)}`,
+      );
+    }
   }
-};
 
-export const timeDuration = (timeInMs: number) => {
-  const duration = dayjs.duration(timeInMs);
+  if (hours) {
+    if (compact) {
+      formattedParts.push(`${hours} ${durationFormatLabels.hours.compact}`);
+    } else {
+      formattedParts.push(
+        `${hours} ${declension(hours, durationFormatLabels.hours.full)}`,
+      );
+    }
+  }
 
-  return {
-    hours: duration.hours(),
-    minutes: duration.minutes(),
-    seconds: duration.seconds(),
-  };
+  if (minutes) {
+    if (compact) {
+      formattedParts.push(`${minutes} ${durationFormatLabels.minutes.compact}`);
+    } else {
+      formattedParts.push(
+        `${minutes} ${declension(minutes, durationFormatLabels.minutes.full)}`,
+      );
+    }
+  }
+
+  if (seconds) {
+    if (compact) {
+      formattedParts.push(`${seconds} ${durationFormatLabels.seconds.compact}`);
+    } else {
+      formattedParts.push(
+        `${seconds} ${declension(seconds, durationFormatLabels.seconds.full)}`,
+      );
+    }
+  }
+
+  return formattedParts.join(' ');
 };

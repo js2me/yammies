@@ -1,4 +1,4 @@
-const MULTIPLY_BY_UNIT = {
+export const unitsToMs = {
   ms: 1,
   sec: 1000,
   min: 1000 * 60,
@@ -16,5 +16,5 @@ const MULTIPLY_BY_UNIT = {
  * ms(30, 'sec') // 30_000
  * ```
  */
-export const ms = (value: number, unit: keyof typeof MULTIPLY_BY_UNIT = 'ms') =>
-  value * MULTIPLY_BY_UNIT[unit];
+export const ms = (value: number, unit: keyof typeof unitsToMs = 'ms') =>
+  value * unitsToMs[unit];
