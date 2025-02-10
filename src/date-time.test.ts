@@ -3,8 +3,8 @@ import { describe, expect, test } from 'vitest';
 import {
   changeDate,
   dayTimeDuration,
-  getDatesFormatDuration,
   timeDuration,
+  getFormatDuration,
 } from './date-time';
 import { unitsToMs } from './ms';
 
@@ -80,25 +80,21 @@ describe('date-time', () => {
       });
     });
   });
-  describe('getDatesFormatDuration', () => {
+  describe('getFormatDuration', () => {
     test('30 minutes', () => {
       const dateA = new Date(`2025-02-10T09:53:00.000Z`);
       const dateB = changeDate(dateA, 30, 'minutes');
-      expect(getDatesFormatDuration(dateA, dateB)).toBe('30 минут');
+      expect(getFormatDuration(dateA, dateB)).toBe('30 минут');
     });
     test('2 hours 45 minutes 10 seconds', () => {
       const dateA = new Date(`2025-02-10T09:53:00.000Z`);
       const dateB = changeDate(dateA, 2, 'hours', 45, 'minutes', 10, 'seconds');
-      expect(getDatesFormatDuration(dateA, dateB)).toBe(
-        '2 часа 45 минут 10 секунд',
-      );
+      expect(getFormatDuration(dateA, dateB)).toBe('2 часа 45 минут 10 секунд');
     });
     test('2 hours 45 minutes 10 seconds (compact)', () => {
       const dateA = new Date(`2025-02-10T09:53:00.000Z`);
       const dateB = changeDate(dateA, 2, 'hours', 45, 'minutes', 10, 'seconds');
-      expect(getDatesFormatDuration(dateA, dateB, true)).toBe(
-        '2 ч 45 мин 10 сек',
-      );
+      expect(getFormatDuration(dateA, dateB, true)).toBe('2 ч 45 мин 10 сек');
     });
   });
 });

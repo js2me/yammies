@@ -165,15 +165,27 @@ const durationFormatLabels = {
   seconds: { compact: 'сек', full: ['секунда', 'секунды', 'секунд'] },
 } as const;
 
-export const getDatesFormatDuration = (
+export function getFormatDuration(
   dateA: Date,
   dateB: Date,
   compact?: boolean,
-) => {
-  const startedDate = dayjs(dateA);
-  const endedDate = dayjs(dateB);
+): string;
+export function getFormatDuration(ms: number, compact?: boolean): string;
 
-  const diff = endedDate.diff(startedDate, 'ms');
+export function getFormatDuration(...args: any[]): string {
+  let compact = false;
+  let diff = 0;
+
+  if (args[0] instanceof Date) {
+    const startedDate = dayjs(args[0]);
+    const endedDate = dayjs(args[1]);
+
+    diff = endedDate.diff(startedDate, 'ms');
+    compact = args[2] === true;
+  } else {
+    diff = args[0];
+    compact = args[1] === true;
+  }
 
   const { days, hours, minutes, seconds } = dayTimeDuration(diff);
 
@@ -220,4 +232,4 @@ export const getDatesFormatDuration = (
   }
 
   return formattedParts.join(' ');
-};
+}
