@@ -57,6 +57,8 @@ export type PartialKeys<T, K extends keyof T> = Omit<T, K> &
 export type RequiredKeys<T, K extends keyof T> = Omit<T, K> &
   Required<Pick<T, K>>;
 
+export type Unpromise<T> = T extends Promise<infer TValue> ? TValue : T;
+
 export type AllPropertiesOptional<T> = keyof T extends never
   ? true
   : {
